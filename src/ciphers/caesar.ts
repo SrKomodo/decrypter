@@ -1,18 +1,22 @@
 import { Cipher, Options } from "../ciphers";
 
+function shiftChar(charCode: number, offset: number) {
+  if (charCode < 65 || charCode > 90) {
+    return String.fromCharCode(charCode);
+  } else {
+    return String.fromCharCode((charCode - 65 + offset) % 26 + 65);
+  }
+}
+
 function shift(input: string, offset: number) {
   let output = "";
   for (let i = 0; i < input.length; i++) {
-    const charCode = input.charCodeAt(i);
-    if (charCode < 65 || charCode > 90) {
-      output += String.fromCharCode(charCode);
-    } else {
-      output += String.fromCharCode((charCode - 65 + offset) % 26 + 65);
-    }
+    output += shiftChar(input.charCodeAt(i), offset);
   }
   return output;
 }
 
+export { shiftChar };
 export default class Caesar implements Cipher {
   name = "Caesar Cipher";
   id = "caesar";

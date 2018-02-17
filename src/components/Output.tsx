@@ -28,7 +28,7 @@ class Output extends React.Component<Props> {
         const results = cipher.decipher(
           this.props.input,
           this.props.options[cipher.id],
-          this.props.passwords.split(","),
+          this.props.passwords.split(",").filter((password) => password !== ""),
         );
 
         const elements = results.map((result, i) => {

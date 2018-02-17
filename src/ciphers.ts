@@ -12,13 +12,15 @@ interface Cipher {
   id: string;
   options: Options;
   filter: (input: string) => boolean;
-  decipher: (input: string, options: Options, passwords?: string[]) => string[];
+  decipher: (input: string, options: Options, passwords: string[]) => string[];
 }
 
 import Caesar from "./ciphers/caesar";
+import Vigenere from "./ciphers/vigenere";
 
 const cipherArray: Cipher[] = [
   new Caesar(),
+  new Vigenere(),
 ];
 
 const ciphers: {[id: string]: Cipher} = {};
