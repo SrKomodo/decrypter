@@ -27,7 +27,13 @@ class CipherOption extends React.Component<Props> {
     for (const id in this.props.options) {
       if (this.props.options.hasOwnProperty(id)) {
         const cipherOption = this.props.options[id];
-        elements.push(<Option handleOptionChange={this.handleOptionChange} id={id} key={id} option={cipherOption}/>);
+        elements.push(<Option
+          enabled={this.props.enabled}
+          handleOptionChange={this.handleOptionChange}
+          id={id}
+          key={id}
+          option={cipherOption}
+        />);
       }
     }
     return (

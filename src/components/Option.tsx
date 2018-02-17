@@ -5,6 +5,7 @@ import { Option } from "../ciphers";
 interface Props {
   handleOptionChange: (value: boolean, id: string) => any;
   id: string;
+  enabled: boolean;
   option: Option;
 }
 
@@ -17,6 +18,7 @@ class CipherOption extends React.Component<Props> {
     return (
       <div>
         <input
+          disabled={!this.props.enabled}
           onChange={this.handleChange}
           checked={this.props.option.enabled}
           id={this.props.option.name}
