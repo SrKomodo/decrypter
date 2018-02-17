@@ -43,7 +43,7 @@ class CipherOptions extends React.Component<Props> {
       }
     }
     return (
-      <div>
+      <div id="options">
         {elements}
       </div>
     );

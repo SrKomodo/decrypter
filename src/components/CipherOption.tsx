@@ -37,7 +37,7 @@ class CipherOption extends React.Component<Props> {
       }
     }
     return (
-      <div>
+      <div className={this.props.enabled ? "" : "disabled"}>
         <input onChange={this.handleEnableChange} checked={this.props.enabled} id={this.props.id} type="checkbox"/>
         <label htmlFor={this.props.id}>{ciphers[this.props.id].name}</label>
         <div>

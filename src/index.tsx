@@ -1,6 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
+import "./stylesheet.scss";
+
 import ciphers, { Cipher, Options } from "./ciphers";
 import CipherOptions from "./components/CipherOptions";
 import Input from "./components/Input";
