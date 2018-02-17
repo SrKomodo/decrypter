@@ -3,14 +3,14 @@ import * as React from "react";
 import { Option } from "../ciphers";
 
 interface Props {
-  handleChange: (value: boolean, id: string) => any;
+  handleOptionChange: (value: boolean, id: string) => any;
   id: string;
   option: Option;
 }
 
 class CipherOption extends React.Component<Props> {
   handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.props.handleChange(e.currentTarget.checked, this.props.id);
+    this.props.handleOptionChange(e.currentTarget.checked, this.props.id);
   }
 
   render() {

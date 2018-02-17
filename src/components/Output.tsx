@@ -7,6 +7,7 @@ interface Props {
   passwords: string;
   filters: string;
   options: {[id: string]: Options};
+  enabled: {[id: string]: boolean};
 }
 
 class Output extends React.Component<Props> {
@@ -14,6 +15,10 @@ class Output extends React.Component<Props> {
     const output = [];
     for (const id in ciphers) {
       if (this.props.options.hasOwnProperty(id)) {
+        if (!this.props.enabled[id]) {
+          continue;
+        }
+
         const cipher = ciphers[id];
 
         if (!cipher.filter(this.props.input)) {

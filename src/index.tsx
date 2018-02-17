@@ -11,6 +11,7 @@ interface State {
   input: string;
   passwords: string;
   options: {[id: string]: Options};
+  enabled: {[id: string]: boolean};
 }
 
 class App extends React.Component<{}, State> {
@@ -18,6 +19,7 @@ class App extends React.Component<{}, State> {
     super(props);
 
     this.state = {
+      enabled: {},
       filters: "",
       input: "",
       options: {},
@@ -26,6 +28,7 @@ class App extends React.Component<{}, State> {
 
     for (const id in ciphers) {
       if (ciphers.hasOwnProperty(id)) {
+        this.state.enabled[id] = true;
         this.state.options[id] = ciphers[id].options;
       }
     }
@@ -37,6 +40,10 @@ class App extends React.Component<{}, State> {
 
   handleOptionsChange = (options: {[id: string]: Options}) => {
     this.setState({options});
+  }
+
+  handleEnabledChange = (enabled: {[id: string]: boolean}) => {
+    this.setState({enabled});
   }
 
   render() {
@@ -56,8 +63,14 @@ class App extends React.Component<{}, State> {
           passwords={this.state.passwords}
           filters={this.state.filters}
           options={this.state.options}
+          enabled={this.state.enabled}
         />
-        <CipherOptions handleOptionsChange={this.handleOptionsChange} options={this.state.options}/>
+        <CipherOptions
+          handleOptionsChange={this.handleOptionsChange}
+          handleEnabledChange={this.handleEnabledChange}
+          options={this.state.options}
+          enabled={this.state.enabled}
+        />
       </>
     );
   }

@@ -5,15 +5,21 @@ import Option from "./Option";
 
 interface Props {
   id: string;
+  enabled: boolean;
   options: Options;
-  handleChange: (option: Options, id: string) => any;
+  handleOptionChange: (option: Options, id: string) => any;
+  handleEnabledChange: (enabled: boolean, id: string) => any;
 }
 
 class CipherOption extends React.Component<Props> {
-  handleChange = (value: boolean, id: string) => {
+  handleOptionChange = (value: boolean, id: string) => {
     const newOptions = this.props.options;
     newOptions[id].enabled = value;
-    this.props.handleChange(newOptions, this.props.id);
+    this.props.handleOptionChange(newOptions, this.props.id);
+  }
+
+  handleEnableChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    this.props.handleEnabledChange(e.currentTarget.checked, this.props.id);
   }
 
   render() {
@@ -21,13 +27,16 @@ class CipherOption extends React.Component<Props> {
     for (const id in this.props.options) {
       if (this.props.options.hasOwnProperty(id)) {
         const cipherOption = this.props.options[id];
-        elements.push(<Option handleChange={this.handleChange} id={id} key={id} option={cipherOption}/>);
+        elements.push(<Option handleOptionChange={this.handleOptionChange} id={id} key={id} option={cipherOption}/>);
       }
     }
     return (
       <div>
-        <div>{ciphers[this.props.id].name}</div>
-        {elements}
+        <input onChange={this.handleEnableChange} checked={this.props.enabled} id={this.props.id} type="checkbox"/>
+        <label htmlFor={this.props.id}>{ciphers[this.props.id].name}</label>
+        <div>
+          {elements}
+        </div>
       </div>
     );
   }
