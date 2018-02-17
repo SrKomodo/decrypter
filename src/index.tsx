@@ -20,20 +20,28 @@ class App extends React.Component<{}, State> {
   constructor(props: {}) {
     super(props);
 
-    this.state = {
-      enabled: {},
-      filters: "",
-      input: "",
-      options: {},
-      passwords: "",
-    };
+    if (sessionStorage.getItem("decrypter-state")) {
+      this.state = JSON.parse(sessionStorage.getItem("decrypter-state")!);
+    } else {
+      this.state = {
+        enabled: {},
+        filters: "",
+        input: "",
+        options: {},
+        passwords: "",
+      };
 
-    for (const id in ciphers) {
-      if (ciphers.hasOwnProperty(id)) {
-        this.state.enabled[id] = true;
-        this.state.options[id] = ciphers[id].options;
+      for (const id in ciphers) {
+        if (ciphers.hasOwnProperty(id)) {
+          this.state.enabled[id] = true;
+          this.state.options[id] = ciphers[id].options;
+        }
       }
     }
+  }
+
+  componentDidUpdate() {
+    sessionStorage.setItem("decrypter-state", JSON.stringify(this.state));
   }
 
   handleInputChange = (input: string) => this.setState({ input });
