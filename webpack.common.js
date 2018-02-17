@@ -3,7 +3,7 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.ts",
+  entry: "./src/index.tsx",
   plugins: [
     new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin({
@@ -12,13 +12,18 @@ module.exports = {
     })
   ],
   resolve: {
-    extensions: [".ts", ".js"]
+    extensions: [".json", ".js", ".ts", ".jsx", ".tsx"]
   },
   module: {
     rules: [
       {
-        test: /\.ts$/,
-        exclude: /(node_modules|bower_components)/,
+        enforce: "pre",
+        test: /\.js$/,
+        loader: "source-map-loader"
+      },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
         use: [
           {
             loader: "babel-loader",
@@ -26,7 +31,7 @@ module.exports = {
               presets: ["@babel/preset-env"]
             }
           },
-          "ts-loader"
+          "ts-loader",
         ]
       },
       {
