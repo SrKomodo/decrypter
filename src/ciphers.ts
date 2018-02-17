@@ -15,12 +15,14 @@ interface Cipher {
   decipher: (input: string, options: Options, passwords: string[]) => string[];
 }
 
+import Atbash from "./ciphers/atbash";
 import Caesar from "./ciphers/caesar";
 import Vigenere from "./ciphers/vigenere";
 
 const cipherArray: Cipher[] = [
   new Caesar(),
   new Vigenere(),
+  new Atbash(),
 ];
 
 const ciphers: {[id: string]: Cipher} = {};
