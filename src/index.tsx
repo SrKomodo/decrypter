@@ -22,6 +22,12 @@ class App extends React.Component<{}, State> {
 
     if (sessionStorage.getItem("decrypter-state")) {
       this.state = JSON.parse(sessionStorage.getItem("decrypter-state")!);
+      for (const id in ciphers) {
+        if (ciphers.hasOwnProperty(id) && !this.state.options[id]) {
+          this.state.enabled[id] = true;
+          this.state.options[id] = ciphers[id].options;
+        }
+      }
     } else {
       this.state = {
         enabled: {},
