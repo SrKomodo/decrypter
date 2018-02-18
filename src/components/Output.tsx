@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import ciphers, { Options } from "../ciphers";
+import fuzzy from "../fuzzy";
 
 interface Props {
   input: string;
@@ -31,16 +32,19 @@ class Output extends React.Component<Props> {
           this.props.passwords.split(",").filter((password) => password !== ""),
         );
 
-        const elements = results.map((result, i) => {
-          const upper = result.toUpperCase();
-          if (this.props.filters.split(",").some((filter) => upper.indexOf(filter.toUpperCase()) !== -1)) {
-            return <div key={`${cipher.id}_${i}`}>{result}</div>;
+        const elements = [];
+        const filters = this.props.filters.split(",").filter((filter) => filter !== "");
+        for (let i = 0; i < results.length; i++) {
+          const upper = results[i].toUpperCase();
+          if (filters.length === 0 || filters.some((filter) => fuzzy(filter.toUpperCase(), upper))) {
+            elements.push(<div key={`${cipher.id}_${i}`}>{results[i]}</div>);
           }
-        });
+        }
 
         output.push(...elements);
       }
     }
+
     return (
       <div id="output">
         {output}
