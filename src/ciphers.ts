@@ -15,6 +15,7 @@ interface Cipher {
   decipher: (input: string, options: Options, passwords: string[]) => string[];
 }
 
+import A1Z26 from "./ciphers/A1Z26";
 import Atbash from "./ciphers/atbash";
 import Binary from "./ciphers/binary";
 import Caesar from "./ciphers/caesar";
@@ -24,6 +25,7 @@ const cipherArray: Cipher[] = [
   new Caesar(),
   new Vigenere(),
   new Atbash(),
+  new A1Z26(),
   new Binary(),
 ];
 
