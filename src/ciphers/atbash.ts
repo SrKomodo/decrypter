@@ -1,13 +1,13 @@
-import { Cipher, Options } from "../ciphers";
+import { Cipher } from "../ciphers";
 
-export default class Atbash implements Cipher {
-  name = "Atbash Cipher";
-  id = "atbash";
-  options = {};
+const Atbash: Cipher = {
+  id: "atbash",
+  name: "Atbash Cipher",
+  options: {},
 
   filter(input: string) {
     return /[A-Z]+/gi.test(input);
-  }
+  },
 
   decipher(input: string) {
     input = input.toUpperCase();
@@ -21,5 +21,7 @@ export default class Atbash implements Cipher {
       }
     }
     return [result];
-  }
-}
+  },
+};
+
+export default Atbash;

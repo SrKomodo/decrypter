@@ -23,12 +23,12 @@ import Caesar from "./ciphers/caesar";
 import Vigenere from "./ciphers/vigenere";
 
 const cipherArray: Cipher[] = [
-  new Caesar(),
-  new Vigenere(),
-  new Atbash(),
-  new A1Z26(),
-  new Binary(),
-  new Base64(),
+  Caesar,
+  Vigenere,
+  Atbash,
+  A1Z26,
+  Binary,
+  Base64,
 ];
 
 const ciphers: {[id: string]: Cipher} = {};

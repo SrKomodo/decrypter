@@ -9,19 +9,19 @@ function vigenereShift(charCode: number, passwordCharCode: number) {
   return shiftChar(charCode, 26 - (passwordCharCode - 65));
 }
 
-export default class Vigenere implements Cipher {
-  name = "Vigenere Cipher";
-  id = "vigenere";
-  options = {
+const Vigenere: Cipher = {
+  id: "vigenere",
+  name: "Vigenere Cipher",
+  options: {
     countAll: {
       enabled: false,
       name: "Count all characters",
     },
-  };
+  },
 
   filter(input: string) {
     return /[A-Z]+/gi.test(input);
-  }
+  },
 
   decipher(input: string, options: Options, passwords: string[]) {
     input = input.toUpperCase();
@@ -43,5 +43,7 @@ export default class Vigenere implements Cipher {
       results.push(result);
     }
     return results;
-  }
-}
+  },
+};
+
+export default Vigenere;

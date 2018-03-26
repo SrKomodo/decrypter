@@ -1,15 +1,17 @@
-import { Cipher, Options } from "../ciphers";
+import { Cipher } from "../ciphers";
 
-export default class Base64 implements Cipher {
-  name = "Base64";
-  id = "base64";
-  options = {};
+const Base64: Cipher = {
+  id: "base64",
+  name: "Base64",
+  options: {},
 
   filter(input: string) {
     return /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)$/g.test(input);
-  }
+  },
 
   decipher(input: string) {
     return [atob(input)];
-  }
-}
+  },
+};
+
+export default Base64;

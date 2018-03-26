@@ -1,13 +1,13 @@
-import { Cipher, Options } from "../ciphers";
+import { Cipher } from "../ciphers";
 
-export default class Binary implements Cipher {
-  name = "Binary";
-  id = "binary";
-  options = {};
+const Binary: Cipher = {
+  id: "binary",
+  name: "Binary",
+  options: {},
 
   filter(input: string) {
     return /^(?:[01]{8})+$/g.test(input);
-  }
+  },
 
   decipher(input: string) {
     let output = "";
@@ -15,5 +15,7 @@ export default class Binary implements Cipher {
       output += String.fromCharCode(parseInt(input.substr(i, 8), 2));
     }
     return [output];
-  }
-}
+  },
+};
+
+export default Binary;

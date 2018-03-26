@@ -1,13 +1,13 @@
-import { Cipher, Options } from "../ciphers";
+import { Cipher } from "../ciphers";
 
-export default class A1Z26 implements Cipher {
-  name = "A1Z26";
-  id = "a1z26";
-  options = {};
+const A1Z26: Cipher = {
+  id: "a1z26",
+  name: "A1Z26",
+  options: {},
 
   filter(input: string) {
     return /(2[0-6]|1[0-9]|[0-9])([^\d])/g.test(input);
-  }
+  },
 
   decipher(input: string) {
     let output = "";
@@ -27,5 +27,7 @@ export default class A1Z26 implements Cipher {
       }
     }
     return [output];
-  }
-}
+  },
+};
+
+export default A1Z26;

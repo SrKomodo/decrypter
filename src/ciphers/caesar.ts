@@ -17,19 +17,19 @@ function shift(input: string, offset: number) {
 }
 
 export { shiftChar };
-export default class Caesar implements Cipher {
-  name = "Caesar Cipher";
-  id = "caesar";
-  options = {
+const Caesar: Cipher = {
+  id: "caesar",
+  name: "Caesar Cipher",
+  options: {
     allOffsets: {
       enabled: true,
       name: "Try all offsets",
     },
-  };
+  },
 
   filter(input: string) {
     return /[A-Z]+/gi.test(input);
-  }
+  },
 
   decipher(input: string, options: Options) {
     input = input.toUpperCase();
@@ -43,5 +43,7 @@ export default class Caesar implements Cipher {
       results.push(shift(input, 23));
     }
     return results;
-  }
-}
+  },
+};
+
+export default Caesar;
