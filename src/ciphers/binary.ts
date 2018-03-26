@@ -6,13 +6,22 @@ const Binary: Cipher = {
   options: {},
 
   filter(input: string) {
-    return /^(?:[01]{8})+$/g.test(input);
+    return /(?:.*[01]{8}.*)+/g.test(input);
   },
 
   decipher(input: string) {
     let output = "";
-    for (let i = 0; i <= input.length - 8; i += 8) {
-      output += String.fromCharCode(parseInt(input.substr(i, 8), 2));
+    let charI = 0;
+    let charCode = 0;
+    for (const char of input) {
+      if (char === "0" || char === "1") {
+        charCode += parseInt(char, 10) * Math.pow(2, 7 - charI);
+        charI++;
+        if (charI === 8) {
+          output += String.fromCharCode(charCode);
+          charI = charCode = 0;
+        }
+      }
     }
     return [output];
   },
