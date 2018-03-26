@@ -1,6 +1,6 @@
 import { Cipher, Options } from "../ciphers";
 
-export default class Atbash implements Cipher {
+export default class Base64 implements Cipher {
   name = "Base64";
   id = "base64";
   options = {};
