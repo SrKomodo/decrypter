@@ -6,7 +6,7 @@ const A1Z26: Cipher = {
   options: {},
 
   filter(input: string) {
-    return /(2[0-6]|1[0-9]|[0-9])([^\d])/g.test(input);
+    return /([^\d]|^)(?:2[0-6]|1[0-9]|[0-9])([^\d]|$)/g.test(input);
   },
 
   decipher(input: string) {
