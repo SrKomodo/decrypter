@@ -6,7 +6,7 @@ const Binary: Cipher = {
   options: {},
 
   filter(input: string) {
-    return /(?:.*[01]{8}.*)+/g.test(input);
+    return /[01]{8}/g.test(input);
   },
 
   decipher(input: string) {
