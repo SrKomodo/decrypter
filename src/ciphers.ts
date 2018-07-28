@@ -20,6 +20,7 @@ import Atbash from "./ciphers/atbash";
 import Base64 from "./ciphers/base64";
 import Binary from "./ciphers/binary";
 import Caesar from "./ciphers/caesar";
+import Hex from "./ciphers/hex";
 import Vigenere from "./ciphers/vigenere";
 
 const cipherArray: Cipher[] = [
@@ -28,6 +29,7 @@ const cipherArray: Cipher[] = [
   Atbash,
   A1Z26,
   Binary,
+  Hex,
   Base64,
 ];
 
